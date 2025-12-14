@@ -15,7 +15,7 @@ func (err InvalidCredentialsError) ErrorCode() int {
 }
 
 func (err InvalidCredentialsError) Error() string {
-	return "invalid user credentials, authentication failed using the given username and password"
+	return "invalid credentials or insufficient permissions. For token operations, ensure you're using account owner credentials or a token with 'account' permission scope"
 }
 
 func CheckAuthenticationFailed(err error) bool {
@@ -23,7 +23,11 @@ func CheckAuthenticationFailed(err error) bool {
 
 	if errors.As(err, &prob) {
 		errCode := prob.ErrorCode()
-		if errCode == upcloud.ErrCodeAuthenticationFailed || errCode == "INVALID_CREDENTIALS" {
+		// Check for various authentication error codes from the API
+		// UNAUTHORIZED is used by the tokens API endpoint
+		if errCode == upcloud.ErrCodeAuthenticationFailed ||
+		   errCode == "INVALID_CREDENTIALS" ||
+		   errCode == "UNAUTHORIZED" {
 			return true
 		}
 	}
