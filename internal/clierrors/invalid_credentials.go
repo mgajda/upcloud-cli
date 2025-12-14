@@ -15,7 +15,7 @@ func (err InvalidCredentialsError) ErrorCode() int {
 }
 
 func (err InvalidCredentialsError) Error() string {
-	return "invalid credentials or insufficient permissions. For token operations, ensure you're using account owner credentials or a token with 'account' permission scope"
+	return "invalid credentials or insufficient permissions. For token operations, ensure you're using account owner credentials or a token with 'account' permission scope. See https://upcloudltd.github.io/upcloud-cli/#configure-credentials"
 }
 
 func CheckAuthenticationFailed(err error) bool {
