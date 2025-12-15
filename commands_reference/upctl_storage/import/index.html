@@ -7959,11 +7959,15 @@
 <tbody>
 <tr>
 <td><code>--source-location</code></td>
-<td>Location of the source of the import. Can be a file or a URL.</td>
+<td>Location of the source of the import. Can be a file or a URL. Supported file extensions: .7z, .bz2, .gz, .img, .iso, .qcow2, .raw, .tar, .xz, .zip</td>
 </tr>
 <tr>
 <td><code>--storage</code></td>
 <td>Import to an existing storage. Storage must be large enough and must be undetached or the server where the storage is attached must be in shutdown state.</td>
+</tr>
+<tr>
+<td><code>--content-type</code></td>
+<td>Content type of the file being imported. If not specified, it will be automatically detected based on file extension. Supported types: application/gzip, application/octet-stream, application/x-7z-compressed, application/x-bzip2, application/x-tar, application/x-xz, application/zip</td>
 </tr>
 <tr>
 <td><code>--no-wait</code></td>
